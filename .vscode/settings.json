@@ -1,0 +1,4 @@
+{
+    "go.testEnvFile": "myvars.env"
+
+}

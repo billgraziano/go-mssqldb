@@ -642,7 +642,8 @@ func processSingleResponse(sess *tdsSession, ch chan tokenStruct, outs map[strin
 			}
 			errs = append(errs, err)
 			if sess.logFlags&logErrors != 0 {
-				sess.log.Println(err.Message)
+				//sess.log.Println(err.Message)
+				fmt.Printf("ERR   %s\r\n", err.Message)
 			}
 		case tokenInfo:
 			info := parseInfo(sess.buf)
@@ -650,7 +651,10 @@ func processSingleResponse(sess *tdsSession, ch chan tokenStruct, outs map[strin
 				sess.log.Printf("got INFO %d %s", info.Number, info.Message)
 			}
 			if sess.logFlags&logMessages != 0 {
-				sess.log.Println(info.Message)
+				//println("---------------------------")
+				//sess.log.Println(info.Message)
+				fmt.Printf("OUT   %s\r\n", info.Message)
+				//println("---------------------------")
 			}
 		case tokenReturnValue:
 			nv := parseReturnValue(sess.buf)
